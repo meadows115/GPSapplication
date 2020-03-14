@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -33,14 +37,36 @@ public class MainActivity extends AppCompatActivity {
 
                 if(l != null){
                     //if location is not null, we will get the latitude and longitude
-                    double lat=l.getLatitude();
-                    double lon=l.getLongitude();
+                    Double lat=l.getLatitude();
+                    Double lon=l.getLongitude();
                     Toast.makeText(getApplicationContext(), "LAT: "+lat+ " \n LON: "+lon,Toast.LENGTH_LONG ).show();
+
+
+                        String textToSaveLat = "Latitude: " + Double.toString( lat) ;
+                        String textToSaveLon = "\nLongitude: "+ Double.toString( lon);
+
+
+                        try {
+                            FileOutputStream fileOutputStream = openFileOutput("LatitudeLongitude.txt", MODE_PRIVATE);
+                            fileOutputStream.write(textToSaveLat.getBytes());
+                            fileOutputStream.write(textToSaveLon.getBytes());
+                            fileOutputStream.close();
+
+                            Toast.makeText(getApplicationContext(), "Text Saved", Toast.LENGTH_SHORT).show();
+
+
+                           // inputField.setText("");
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
                 }
 
             }
         });
     }
+
 
 }
