@@ -42,7 +42,7 @@ public class GPSTracker implements LocationListener {
             Toast.makeText(context, "Please enable GPS",Toast.LENGTH_LONG).show();
         }
         //if gps is not enabled:
-        return null;
+        return null; 
     }
 
     @Override
