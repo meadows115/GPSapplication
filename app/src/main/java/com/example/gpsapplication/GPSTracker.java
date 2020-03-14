@@ -11,6 +11,12 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import static android.provider.Telephony.Mms.Part.FILENAME;
+
 //for GPS need to implement the location listener
 public class GPSTracker implements LocationListener {
 
@@ -18,8 +24,6 @@ public class GPSTracker implements LocationListener {
     GPSTracker(Context c){
         context=c;
     }
-
-
 
     public Location getLocation(){
 
@@ -56,7 +60,6 @@ public class GPSTracker implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-
     }
 
     @Override
