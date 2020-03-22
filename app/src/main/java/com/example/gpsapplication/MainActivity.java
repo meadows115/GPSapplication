@@ -43,35 +43,37 @@ public class MainActivity extends AppCompatActivity {
                 GPSTracker g= new GPSTracker(getApplicationContext());
                 Location l=g.getLocation();
 
-                if(l != null){
+                if(l != null) {
                     //if location is not null, we will get the latitude and longitude
-                    Double lat=l.getLatitude();
-                    Double lon=l.getLongitude();
-                    Toast.makeText(getApplicationContext(), "LAT: "+lat+ " \n LON: "+lon,Toast.LENGTH_LONG ).show();
-                    Toast.makeText(getApplicationContext(), "Values Saved in Txt File",Toast.LENGTH_LONG ).show();
-                    String textToSaveLat = "Latitude: " + Double.toString( lat) ;
-                    String textToSaveLon = "\nLongitude: "+ Double.toString( lon);
+                    Double lat = l.getLatitude();
+                    Double lon = l.getLongitude();
+                    Toast.makeText(getApplicationContext(), "LAT: " + lat + " \n LON: " + lon, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Values Saved in Txt File", Toast.LENGTH_LONG).show();
+                    String textToSaveLat = "Latitude: " + Double.toString(lat);
+                    String textToSaveLon = "\nLongitude: " + Double.toString(lon) + "\n";
 
-                File root = android.os.Environment.getExternalStorageDirectory();
+                    File root = android.os.Environment.getExternalStorageDirectory();
 
-                File dir = new File (root.getAbsolutePath() + "/download");
-                dir.mkdirs();
-                File file = new File(dir, "longitudelatitude.txt");
+                    File dir = new File(root.getAbsolutePath() + "/download");
+                    dir.mkdirs();
 
-                try {
-                    FileOutputStream f = new FileOutputStream(file);
-                    PrintWriter pw = new PrintWriter(f);
-                    f.write(textToSaveLat.getBytes());
-                    f.write(textToSaveLon.getBytes());
-                    f.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                        File file = new File(dir, "longitudelatitude.txt");
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+                        try {
+                            FileOutputStream f = new FileOutputStream(file,true);
+                            PrintWriter pw = new PrintWriter(f);
+                            f.write(textToSaveLat.getBytes());
+                            f.write(textToSaveLon.getBytes());
+                            f.close();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+
                 }
-
-            }
 
             }
         });
