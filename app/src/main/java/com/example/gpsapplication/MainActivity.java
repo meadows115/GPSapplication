@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     File dir = new File(root.getAbsolutePath() + "/download");
                     dir.mkdirs();
 
-                        File file = new File(dir, "longitudelatitude.txt");
+                        File file = new File(dir, "LongitudeLatitude.txt");
 
                         try {
                             FileOutputStream f = new FileOutputStream(file,true);
